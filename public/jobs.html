@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find jobs – Jobs in Germany</title>
+  <meta name="description" content="Browse open positions in Germany. Filter by city, category, language level and visa sponsorship.">
+  <meta name="theme-color" content="#0d0d0d">
+  <script>
+    // Opened by double-clicking the file instead of through the server: nothing can load.
+    if (location.protocol === 'file:') document.addEventListener('DOMContentLoaded', function () {
+      document.body.innerHTML = '<div style="font:16px/1.6 system-ui,sans-serif;max-width:620px;margin:12vh auto;padding:32px;border-radius:18px;background:#0d0d0d;color:#fff">' +
+        '<div style="height:6px;border-radius:6px;margin-bottom:24px;background:linear-gradient(90deg,#444 33%,#dd0000 33% 66%,#ffce00 66%)"></div>' +
+        '<h1 style="margin:0 0 12px;font-size:26px">Start the server to use Jobs in Germany</h1>' +
+        '<p style="color:#ccc">This page was opened straight from your computer’s files, so the job listings, the application form and the admin panel can’t work.</p>' +
+        '<ol style="color:#ccc;padding-left:20px"><li>Open a terminal in the <b style="color:#fff">JobsInGermany</b> folder.</li>' +
+        '<li>Run <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm install</code> (first time only), then <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm start</code>.</li>' +
+        '<li>Open <b style="color:#ffce00">http://localhost:3000</b> in your browser.</li></ol></div>';
+    });
+  </script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><div class="loader-bars"><span></span><span></span><span></span></div></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="brand" aria-label="Jobs in Germany – home">
+        <img class="logo-light" src="/assets/logo-light.png" alt="Jobs in Germany">
+        <img class="logo-dark" src="/assets/logo.png" alt="">
+      </a>
+      <nav aria-label="Main">
+        <ul class="nav-links">
+          <li><a href="/" data-path="/">Home</a></li>
+          <li><a href="/jobs" data-path="/jobs">Find jobs</a></li>
+          <li><a href="/#categories">Categories</a></li>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/jobs" class="btn btn-primary btn-sm">Browse jobs <i data-icon="arrow"></i></a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="hero-bg" aria-hidden="true"><div class="grid-overlay"></div><div class="blob blob-red"></div><div class="blob blob-gold"></div></div>
+      <div class="container">
+        <nav class="breadcrumb" data-reveal><a href="/">Home</a> / <span>Jobs</span></nav>
+        <h1 data-reveal style="--d:.1s">Find your next <span class="flag-text-gold">job</span> in <span class="flag-text-red">Germany</span></h1>
+        <p data-reveal style="--d:.2s">Filter by city, industry, language and visa sponsorship.</p>
+      </div>
+    </section>
+
+    <div class="container" style="padding-bottom:20px">
+      <div class="listing">
+        <aside class="filters" id="filters" aria-label="Filters">
+          <div class="filters-head">
+            <h3>Filters</h3>
+            <div style="display:flex;gap:14px;align-items:center">
+              <button class="link-btn" id="clear-filters" type="button">Clear all</button>
+              <button class="icon-btn filter-close filter-toggle" id="close-filters" type="button" aria-label="Close filters"><i data-icon="x"></i></button>
+            </div>
+          </div>
+          <div class="filter-group" style="border-top:0;padding-top:0">
+            <h4>Location</h4>
+            <select class="select" id="f-location"><option value="">All cities</option></select>
+          </div>
+          <div class="filter-group">
+            <h4>Category</h4>
+            <div class="chip-list" data-filter="category"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Job type</h4>
+            <div class="chip-list" data-filter="type"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Work mode</h4>
+            <div class="chip-list" data-filter="workMode"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Experience</h4>
+            <div class="chip-list" data-filter="experience"></div>
+          </div>
+          <div class="filter-group">
+            <label class="switch">Visa sponsorship only <input type="checkbox" id="f-visa"></label>
+          </div>
+          <button class="btn btn-dark btn-block filter-toggle" id="apply-filters" type="button">Show results</button>
+        </aside>
+
+        <div>
+          <form class="results-bar" id="search-form">
+            <label class="results-search"><i data-icon="search"></i><span class="sr-only">Search</span><input id="f-q" placeholder="Search job title, skill or company…" autocomplete="off"></label>
+            <button class="btn btn-outline btn-sm filter-toggle" id="open-filters" type="button"><i data-icon="filter"></i> Filters</button>
+            <select class="select" id="f-sort" style="width:auto" aria-label="Sort by">
+              <option value="">Newest first</option>
+              <option value="salary">Highest salary</option>
+            </select>
+            <button class="btn btn-primary btn-sm" type="submit">Search</button>
+          </form>
+          <div class="results-meta"><span id="results-count">Loading jobs…</span></div>
+          <div class="results-list" id="results"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+<footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="/assets/logo-light.png" alt="Jobs in Germany">
+          <p>Connecting international talent with employers across Germany.</p>
+        </div>
+        <div>
+          <h4>Candidates</h4>
+          <ul><li><a href="/jobs">Browse jobs</a></li><li><a href="/jobs?visa=1">Visa sponsorship</a></li><li><a href="/jobs?workMode=Remote">Remote jobs</a></li></ul>
+        </div>
+        <div>
+          <h4>Popular cities</h4>
+          <ul><li><a href="/jobs?location=Berlin">Berlin</a></li><li><a href="/jobs?location=Munich">Munich</a></li><li><a href="/jobs?location=Hamburg">Hamburg</a></li><li><a href="/jobs?location=Frankfurt">Frankfurt</a></li></ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul><li><a href="/#how">How it works</a></li><li><a href="/admin/">Admin login</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> Jobs in Germany. All rights reserved.</span>
+        <span>Made with <span style="color:var(--red)">♥</span> for talent worldwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><i data-icon="arrowUp"></i></button>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/jobs.js"></script>
+</body>
+</html>

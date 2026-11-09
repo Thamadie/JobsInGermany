@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job – Jobs in Germany</title>
+  <meta name="description" content="Job details and online application.">
+  <meta name="theme-color" content="#0d0d0d">
+  <script>
+    // Opened by double-clicking the file instead of through the server: nothing can load.
+    if (location.protocol === 'file:') document.addEventListener('DOMContentLoaded', function () {
+      document.body.innerHTML = '<div style="font:16px/1.6 system-ui,sans-serif;max-width:620px;margin:12vh auto;padding:32px;border-radius:18px;background:#0d0d0d;color:#fff">' +
+        '<div style="height:6px;border-radius:6px;margin-bottom:24px;background:linear-gradient(90deg,#444 33%,#dd0000 33% 66%,#ffce00 66%)"></div>' +
+        '<h1 style="margin:0 0 12px;font-size:26px">Start the server to use Jobs in Germany</h1>' +
+        '<p style="color:#ccc">This page was opened straight from your computer’s files, so the job listings, the application form and the admin panel can’t work.</p>' +
+        '<ol style="color:#ccc;padding-left:20px"><li>Open a terminal in the <b style="color:#fff">JobsInGermany</b> folder.</li>' +
+        '<li>Run <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm install</code> (first time only), then <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm start</code>.</li>' +
+        '<li>Open <b style="color:#ffce00">http://localhost:3000</b> in your browser.</li></ol></div>';
+    });
+  </script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><div class="loader-bars"><span></span><span></span><span></span></div></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="brand" aria-label="Jobs in Germany – home">
+        <img class="logo-light" src="/assets/logo-light.png" alt="Jobs in Germany">
+        <img class="logo-dark" src="/assets/logo.png" alt="">
+      </a>
+      <nav aria-label="Main">
+        <ul class="nav-links">
+          <li><a href="/" data-path="/">Home</a></li>
+          <li><a href="/jobs" data-path="/jobs">Find jobs</a></li>
+          <li><a href="/#categories">Categories</a></li>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/jobs" class="btn btn-primary btn-sm">Browse jobs <i data-icon="arrow"></i></a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="hero-bg" aria-hidden="true"><div class="grid-overlay"></div><div class="blob blob-red"></div><div class="blob blob-gold"></div></div>
+      <div class="container" id="job-banner">
+        <nav class="breadcrumb"><a href="/">Home</a> / <a href="/jobs">Jobs</a> / <span>Loading…</span></nav>
+        <h1>Loading job…</h1>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="detail" id="detail" hidden>
+        <div>
+          <article class="card detail-body" id="job-body" data-reveal></article>
+
+          <section class="card apply-section" id="apply" data-reveal>
+            <div id="apply-form-wrap">
+              <div class="apply-head">
+                <span class="bar"></span>
+                <div><h2>Apply for this job</h2><p>It takes about 3 minutes. Fields marked <span style="color:var(--red)">*</span> are required.</p></div>
+              </div>
+              <form id="apply-form" novalidate>
+                <div class="form-grid">
+                  <div class="field"><label for="a-first">First name <span class="req">*</span></label><input class="input" id="a-first" name="firstName" required autocomplete="given-name"></div>
+                  <div class="field"><label for="a-last">Last name <span class="req">*</span></label><input class="input" id="a-last" name="lastName" required autocomplete="family-name"></div>
+                  <div class="field"><label for="a-email">Email <span class="req">*</span></label><input class="input" id="a-email" name="email" type="email" required autocomplete="email"></div>
+                  <div class="field"><label for="a-phone">Phone</label><input class="input" id="a-phone" name="phone" type="tel" autocomplete="tel" placeholder="+49 …"></div>
+                  <div class="field"><label for="a-loc">Current location</label><input class="input" id="a-loc" name="currentLocation" placeholder="City, country"></div>
+                  <div class="field"><label for="a-nat">Nationality</label><input class="input" id="a-nat" name="nationality"></div>
+                  <div class="field"><label for="a-german">Your German level</label><select class="select" id="a-german" name="germanLevel"></select></div>
+                  <div class="field"><label>Do you need a work visa?</label>
+                    <div class="radio-row">
+                      <label class="radio-pill"><input type="radio" name="needsVisa" value="yes"><span>Yes</span></label>
+                      <label class="radio-pill"><input type="radio" name="needsVisa" value="no" checked><span>No</span></label>
+                    </div>
+                  </div>
+                  <div class="field"><label for="a-avail">Available from</label><input class="input" id="a-avail" name="availableFrom" type="date"></div>
+                  <div class="field"><label for="a-salary">Expected salary (€ / year)</label><input class="input" id="a-salary" name="expectedSalary" type="number" min="0" step="1000"></div>
+                  <div class="field full"><label for="a-link">LinkedIn or portfolio URL</label><input class="input" id="a-link" name="linkedin" type="url" placeholder="https://"></div>
+                  <div class="field full"><label for="a-cover">Cover letter / message</label><textarea class="input" id="a-cover" name="coverLetter" maxlength="8000" placeholder="Tell the employer why you’re a great fit…"></textarea></div>
+                  <div class="field full" id="cv-field">
+                    <label>CV / Resume <span class="req">*</span></label>
+                    <div class="dropzone" id="dropzone">
+                      <input type="file" id="a-cv" name="cv" accept=".pdf,.doc,.docx" aria-label="Upload CV">
+                      <div class="dz-icon"><i data-icon="upload"></i></div>
+                      <div class="dz-title">Drag &amp; drop your CV here or <u>browse</u></div>
+                      <div class="dz-hint">PDF, DOC or DOCX · max. 5 MB</div>
+                    </div>
+                    <div class="file-chip" id="file-chip">
+                      <div class="fi" id="file-ext">PDF</div>
+                      <div class="fn"><strong id="file-name"></strong><small id="file-size"></small></div>
+                      <button type="button" class="icon-btn" id="file-remove" aria-label="Remove file"><i data-icon="x"></i></button>
+                    </div>
+                  </div>
+                  <div class="honeypot" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+                  <div class="field full">
+                    <label class="check"><input type="checkbox" name="consent" value="yes" id="a-consent"> <span>I agree that Jobs in Germany stores my application data and shares it with the employer for the purpose of this application.</span></label>
+                  </div>
+                </div>
+                <div class="form-error" id="form-error" role="alert"></div>
+                <div class="progress" id="progress"><i></i></div>
+                <button class="btn btn-primary btn-lg btn-block" style="margin-top:22px" type="submit" id="submit-btn">Submit application <i data-icon="arrow"></i></button>
+              </form>
+            </div>
+            <div class="success" id="success" role="status">
+              <svg class="success-mark" viewBox="0 0 110 110" aria-hidden="true"><circle cx="55" cy="55" r="50"/><path d="M33 56l15 15 30-31"/></svg>
+              <h2>Application sent!</h2>
+              <p style="color:var(--muted);max-width:440px;margin:0 auto 24px">Thank you, <strong id="success-name"></strong>. We’ve received your application and will get back to you by email soon. Viel Erfolg!</p>
+              <a href="/jobs" class="btn btn-dark">Browse more jobs <i data-icon="arrow"></i></a>
+            </div>
+          </section>
+        </div>
+
+        <aside class="side-card">
+          <div class="side-salary" data-reveal="right">
+            <small>Salary</small>
+            <strong id="side-salary"></strong>
+            <a href="#apply" class="btn btn-gold btn-block" id="side-apply">Apply now <i data-icon="arrow"></i></a>
+          </div>
+          <div class="card" data-reveal="right" style="--d:.1s;padding:12px 24px">
+            <div class="facts" id="facts"></div>
+          </div>
+          <div class="card" data-reveal="right" style="--d:.2s;padding:20px 24px">
+            <div style="font-weight:600;margin-bottom:12px">Share this job</div>
+            <div class="share-row">
+              <button class="icon-btn" id="copy-link" aria-label="Copy link"><i data-icon="link"></i></button>
+              <a class="icon-btn" id="share-mail" aria-label="Share via email"><i data-icon="mail"></i></a>
+              <a class="icon-btn" id="share-li" aria-label="Share on LinkedIn" target="_blank" rel="noopener"><i data-icon="share"></i></a>
+            </div>
+          </div>
+          <div id="similar"></div>
+        </aside>
+      </div>
+
+      <div class="empty" id="not-found" hidden style="margin-top:40px">
+        <div class="empty-icon"><i data-icon="search"></i></div>
+        <h2>Job not found</h2>
+        <p style="color:var(--muted)">This position may have been filled or removed.</p>
+        <a href="/jobs" class="btn btn-primary">See all open jobs</a>
+      </div>
+    </div>
+  </main>
+
+  
+<footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="/assets/logo-light.png" alt="Jobs in Germany">
+          <p>Connecting international talent with employers across Germany.</p>
+        </div>
+        <div>
+          <h4>Candidates</h4>
+          <ul><li><a href="/jobs">Browse jobs</a></li><li><a href="/jobs?visa=1">Visa sponsorship</a></li><li><a href="/jobs?workMode=Remote">Remote jobs</a></li></ul>
+        </div>
+        <div>
+          <h4>Popular cities</h4>
+          <ul><li><a href="/jobs?location=Berlin">Berlin</a></li><li><a href="/jobs?location=Munich">Munich</a></li><li><a href="/jobs?location=Hamburg">Hamburg</a></li><li><a href="/jobs?location=Frankfurt">Frankfurt</a></li></ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul><li><a href="/#how">How it works</a></li><li><a href="/admin/">Admin login</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> Jobs in Germany. All rights reserved.</span>
+        <span>Made with <span style="color:var(--red)">♥</span> for talent worldwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><i data-icon="arrowUp"></i></button>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/job.js"></script>
+</body>
+</html>

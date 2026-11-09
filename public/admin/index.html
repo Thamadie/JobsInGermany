@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Admin – Jobs in Germany</title>
+  <script>
+    // Opened by double-clicking the file instead of through the server: nothing can load.
+    if (location.protocol === 'file:') document.addEventListener('DOMContentLoaded', function () {
+      document.body.innerHTML = '<div style="font:16px/1.6 system-ui,sans-serif;max-width:620px;margin:12vh auto;padding:32px;border-radius:18px;background:#0d0d0d;color:#fff">' +
+        '<div style="height:6px;border-radius:6px;margin-bottom:24px;background:linear-gradient(90deg,#444 33%,#dd0000 33% 66%,#ffce00 66%)"></div>' +
+        '<h1 style="margin:0 0 12px;font-size:26px">Start the server to use Jobs in Germany</h1>' +
+        '<p style="color:#ccc">This page was opened straight from your computer’s files, so the job listings, the application form and the admin panel can’t work.</p>' +
+        '<ol style="color:#ccc;padding-left:20px"><li>Open a terminal in the <b style="color:#fff">JobsInGermany</b> folder.</li>' +
+        '<li>Run <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm install</code> (first time only), then <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm start</code>.</li>' +
+        '<li>Open <b style="color:#ffce00">http://localhost:3000</b> in your browser.</li></ol></div>';
+    });
+  </script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin">
+  <div class="loader" aria-hidden="true"><div class="loader-bars"><span></span><span></span><span></span></div></div>
+
+  <!-- Login -->
+  <section class="login" id="login" hidden>
+    <div class="login-art" aria-hidden="true">
+      <div class="hero-bg"><div class="grid-overlay"></div><div class="blob blob-red"></div><div class="blob blob-gold"></div></div>
+      <img src="/assets/logo-light.png" alt="" class="login-logo">
+      <div class="login-bars"><i></i><i></i><i></i></div>
+      <p>Manage jobs, review applications and hire great people.</p>
+    </div>
+    <div class="login-form-wrap">
+      <form class="login-form" id="login-form">
+        <img src="/assets/logo.png" alt="Jobs in Germany" class="login-logo-sm">
+        <h1>Welcome back</h1>
+        <p class="muted">Sign in to the admin panel.</p>
+        <div class="field"><label for="l-user">Username</label><input class="input" id="l-user" autocomplete="username" required></div>
+        <div class="field"><label for="l-pass">Password</label><input class="input" id="l-pass" type="password" autocomplete="current-password" required></div>
+        <div class="form-error" id="login-error" role="alert"></div>
+        <button class="btn btn-primary btn-block btn-lg" type="submit">Sign in <i data-icon="arrow"></i></button>
+        <a href="/" class="back-link"><i data-icon="arrow" class="flip"></i> Back to website</a>
+      </form>
+    </div>
+  </section>
+
+  <!-- App -->
+  <div class="app" id="app" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a href="/" class="side-brand" title="View website"><img src="/assets/logo-light.png" alt="Jobs in Germany"></a>
+      <nav class="side-nav">
+        <a href="#dashboard" data-view="dashboard"><i data-icon="chart"></i> Dashboard</a>
+        <a href="#jobs" data-view="jobs"><i data-icon="briefcase"></i> Jobs <span class="side-count" id="nav-jobs"></span></a>
+        <a href="#applications" data-view="applications"><i data-icon="inbox"></i> Applications <span class="side-count red" id="nav-apps"></span></a>
+      </nav>
+      <div class="side-bottom">
+        <a href="/" target="_blank" rel="noopener"><i data-icon="external"></i> View website</a>
+        <button type="button" id="logout"><i data-icon="logout"></i> Log out</button>
+      </div>
+    </aside>
+    <div class="side-backdrop" id="side-backdrop"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Open menu"><i data-icon="menu"></i></button>
+        <div>
+          <h1 id="view-title">Dashboard</h1>
+          <p class="muted" id="view-sub"></p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary" id="new-job-btn" type="button"><i data-icon="plus"></i> <span>New job</span></button>
+          <div class="avatar" id="avatar" title="Admin">A</div>
+        </div>
+      </header>
+
+      <div class="warning-bar" id="pw-warning" hidden>
+        <i data-icon="lock"></i> <span>You are using the default admin password. Set the <code>ADMIN_PASSWORD</code> environment variable before going live.</span>
+      </div>
+
+      <!-- Dashboard -->
+      <section class="view" data-view="dashboard">
+        <div class="stat-grid" id="stat-grid"></div>
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel-head"><h3>Applications – last 14 days</h3></div>
+            <div class="bar-chart" id="day-chart"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Pipeline</h3></div>
+            <div class="status-bars" id="status-bars"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Top jobs by applications</h3><a href="#jobs" class="link-btn">All jobs</a></div>
+            <div id="top-jobs"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Latest applications</h3><a href="#applications" class="link-btn">View all</a></div>
+            <div id="recent-apps"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jobs -->
+      <section class="view" data-view="jobs" hidden>
+        <div class="toolbar">
+          <label class="tool-search"><i data-icon="search"></i><input id="jobs-search" placeholder="Search jobs…" aria-label="Search jobs"></label>
+          <div class="seg" id="jobs-status-filter" role="tablist">
+            <button type="button" class="active" data-value="">All</button>
+            <button type="button" data-value="active">Active</button>
+            <button type="button" data-value="draft">Draft</button>
+            <button type="button" data-value="closed">Closed</button>
+          </div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Job</th><th>Location</th><th>Status</th><th>Applicants</th><th>Featured</th><th>Posted</th><th class="right">Actions</th></tr></thead>
+              <tbody id="jobs-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Applications -->
+      <section class="view" data-view="applications" hidden>
+        <div class="toolbar">
+          <label class="tool-search"><i data-icon="search"></i><input id="apps-search" placeholder="Search name, email, job…" aria-label="Search applications"></label>
+          <select class="select" id="apps-job" aria-label="Filter by job"><option value="">All jobs</option></select>
+          <select class="select" id="apps-status" aria-label="Filter by status"><option value="">All statuses</option></select>
+          <div class="toolbar-right">
+            <a class="btn btn-outline btn-sm" id="export-csv"><i data-icon="download"></i> Export CSV</a>
+            <a class="btn btn-dark btn-sm" id="export-zip"><i data-icon="zip"></i> Download all (ZIP)</a>
+          </div>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Candidate</th><th>Job</th><th>Details</th><th>Applied</th><th>Status</th><th class="right">Actions</th></tr></thead>
+              <tbody id="apps-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Job editor modal -->
+  <div class="modal" id="job-modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="job-modal-title">
+      <div class="modal-head">
+        <h2 id="job-modal-title">New job</h2>
+        <button class="icon-btn" data-close aria-label="Close"><i data-icon="x"></i></button>
+      </div>
+      <form id="job-form" class="modal-body" novalidate>
+        <div class="form-grid">
+          <div class="field full"><label for="j-title">Job title <span class="req">*</span></label><input class="input" id="j-title" name="title" maxlength="140" required></div>
+          <div class="field"><label for="j-company">Company <span class="req">*</span></label><input class="input" id="j-company" name="company" maxlength="120" required></div>
+          <div class="field"><label for="j-location">Location <span class="req">*</span></label><input class="input" id="j-location" name="location" maxlength="80" required placeholder="e.g. Berlin"></div>
+          <div class="field"><label for="j-category">Category</label><select class="select" id="j-category" name="category"></select></div>
+          <div class="field"><label for="j-type">Job type</label><select class="select" id="j-type" name="type"></select></div>
+          <div class="field"><label for="j-mode">Work mode</label><select class="select" id="j-mode" name="workMode"></select></div>
+          <div class="field"><label for="j-exp">Experience</label><select class="select" id="j-exp" name="experience"></select></div>
+          <div class="field"><label for="j-smin">Salary min (€ / year)</label><input class="input" id="j-smin" name="salaryMin" type="number" min="0" step="1000"></div>
+          <div class="field"><label for="j-smax">Salary max (€ / year)</label><input class="input" id="j-smax" name="salaryMax" type="number" min="0" step="1000"></div>
+          <div class="field"><label for="j-german">German level required</label><select class="select" id="j-german" name="germanLevel"></select></div>
+          <div class="field"><label for="j-deadline">Application deadline</label><input class="input" id="j-deadline" name="deadline" type="date"></div>
+          <div class="field full"><label for="j-summary">Short summary</label><input class="input" id="j-summary" name="summary" maxlength="300" placeholder="One sentence shown on the job card"></div>
+          <div class="field full">
+            <label for="j-desc">Description <span class="req">*</span></label>
+            <textarea class="input" id="j-desc" name="description" rows="12" required></textarea>
+            <div class="hint">Tip: a line ending with “:” becomes a heading, lines starting with “- ” become bullet points. Leave an empty line between sections.</div>
+          </div>
+          <div class="field"><label for="j-status">Status</label><select class="select" id="j-status" name="status"></select></div>
+          <div class="field toggles">
+            <label class="switch">Visa sponsorship <input type="checkbox" name="visaSponsorship" id="j-visa"></label>
+            <label class="switch">Featured job <input type="checkbox" name="featured" id="j-featured"></label>
+          </div>
+        </div>
+        <div class="form-error" id="job-error" role="alert"></div>
+      </form>
+      <div class="modal-foot">
+        <button class="btn btn-outline" type="button" data-close>Cancel</button>
+        <button class="btn btn-primary" type="submit" form="job-form" id="job-save">Save job</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application drawer -->
+  <div class="drawer" id="app-drawer" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <aside class="drawer-box" role="dialog" aria-modal="true" aria-label="Application details">
+      <div class="modal-head">
+        <h2>Application</h2>
+        <button class="icon-btn" data-close aria-label="Close"><i data-icon="x"></i></button>
+      </div>
+      <div class="drawer-body" id="drawer-body"></div>
+    </aside>
+  </div>
+
+  <!-- Confirm dialog -->
+  <div class="modal" id="confirm" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box small" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="modal-body center">
+        <div class="confirm-icon"><i data-icon="trash"></i></div>
+        <h2 id="confirm-title">Are you sure?</h2>
+        <p class="muted" id="confirm-text"></p>
+      </div>
+      <div class="modal-foot center">
+        <button class="btn btn-outline" type="button" data-close>Cancel</button>
+        <button class="btn btn-primary" type="button" id="confirm-ok">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/common.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

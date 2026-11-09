@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jobs in Germany – Find your career in Germany</title>
+  <meta name="description" content="Jobs in Germany connects international talent with employers across Germany. Browse jobs with visa sponsorship and apply online in minutes.">
+  <meta name="theme-color" content="#0d0d0d">
+  <script>
+    // Opened by double-clicking the file instead of through the server: nothing can load.
+    if (location.protocol === 'file:') document.addEventListener('DOMContentLoaded', function () {
+      document.body.innerHTML = '<div style="font:16px/1.6 system-ui,sans-serif;max-width:620px;margin:12vh auto;padding:32px;border-radius:18px;background:#0d0d0d;color:#fff">' +
+        '<div style="height:6px;border-radius:6px;margin-bottom:24px;background:linear-gradient(90deg,#444 33%,#dd0000 33% 66%,#ffce00 66%)"></div>' +
+        '<h1 style="margin:0 0 12px;font-size:26px">Start the server to use Jobs in Germany</h1>' +
+        '<p style="color:#ccc">This page was opened straight from your computer’s files, so the job listings, the application form and the admin panel can’t work.</p>' +
+        '<ol style="color:#ccc;padding-left:20px"><li>Open a terminal in the <b style="color:#fff">JobsInGermany</b> folder.</li>' +
+        '<li>Run <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm install</code> (first time only), then <code style="background:#333;padding:2px 6px;border-radius:6px;color:#ffce00">npm start</code>.</li>' +
+        '<li>Open <b style="color:#ffce00">http://localhost:3000</b> in your browser.</li></ol></div>';
+    });
+  </script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><div class="loader-bars"><span></span><span></span><span></span></div></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="brand" aria-label="Jobs in Germany – home">
+        <img class="logo-light" src="/assets/logo-light.png" alt="Jobs in Germany">
+        <img class="logo-dark" src="/assets/logo.png" alt="">
+      </a>
+      <nav aria-label="Main">
+        <ul class="nav-links">
+          <li><a href="/" data-path="/">Home</a></li>
+          <li><a href="/jobs" data-path="/jobs">Find jobs</a></li>
+          <li><a href="/#categories">Categories</a></li>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/jobs" class="btn btn-primary btn-sm">Browse jobs <i data-icon="arrow"></i></a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="grid-overlay"></div>
+        <div class="blob blob-red"></div>
+        <div class="blob blob-gold"></div>
+        <div class="blob blob-dark"></div>
+      </div>
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow" data-reveal><span class="mini-flag"><i></i><i></i><i></i></span> Your gateway to a career in Germany</span>
+          <h1 data-reveal style="--d:.1s">Find your dream job in <span class="rotator" id="rotator"><span class="rotator-word">Berlin</span></span><br><span class="underline-sweep">today.</span></h1>
+          <p class="lead" data-reveal style="--d:.2s">Hand-picked jobs from German employers who welcome international talent — many with visa sponsorship and no German required.</p>
+
+          <form class="search-bar" action="/jobs" data-reveal style="--d:.3s">
+            <label class="search-field"><i data-icon="search"></i><span class="sr-only">Keyword</span><input name="q" placeholder="Job title, skill or company" autocomplete="off"></label>
+            <label class="search-field"><i data-icon="pin"></i><span class="sr-only">Location</span><input name="location" placeholder="City" list="cities" autocomplete="off"></label>
+            <datalist id="cities"></datalist>
+            <button class="btn btn-primary" type="submit">Search jobs</button>
+          </form>
+
+          <div class="hero-tags" data-reveal style="--d:.4s">
+            Popular:
+            <a href="/jobs?category=IT+%26+Software">IT &amp; Software</a>
+            <a href="/jobs?category=Healthcare">Nursing</a>
+            <a href="/jobs?category=Engineering">Engineering</a>
+            <a href="/jobs?visa=1">Visa sponsorship</a>
+          </div>
+
+          <div class="hero-stats" data-reveal style="--d:.5s">
+            <div class="hero-stat"><strong id="stat-jobs">0</strong><span>Open positions</span></div>
+            <div class="hero-stat"><strong id="stat-companies">0</strong><span>Hiring companies</span></div>
+            <div class="hero-stat"><strong id="stat-visa">0</strong><span>With visa support</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <!-- Line sketch of the Reichstag (German Bundestag), drawn in on load -->
+          <svg class="reichstag" viewBox="0 0 1000 410" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false"><g class="rs-s0"><line pathLength="1" x1="20.0" y1="400.0" x2="980.0" y2="400.0"/><line pathLength="1" x1="17.0" y1="401.2" x2="984.0" y2="401.2" class="ghost"/><path pathLength="1" d="M60 400V118H170V400"/><rect pathLength="1" x="54.0" y="108.0" width="122.0" height="10.0"/><path pathLength="1" d="M66 108V96H164V108"/><path pathLength="1" d="M830 400V118H940V400"/><rect pathLength="1" x="824.0" y="108.0" width="122.0" height="10.0"/><path pathLength="1" d="M836 108V96H934V108"/><path pathLength="1" d="M170 176H360"/><rect pathLength="1" x="170.0" y="168.0" width="190.0" height="8.0"/><path pathLength="1" d="M640 176H830"/><rect pathLength="1" x="640.0" y="168.0" width="190.0" height="8.0"/><path pathLength="1" d="M360 400V128H640V400"/><rect pathLength="1" x="352.0" y="120.0" width="296.0" height="8.0"/></g><g class="rs-s1"><line pathLength="1" x1="170.0" y1="300.0" x2="360.0" y2="300.0"/><line pathLength="1" x1="170.0" y1="306.0" x2="360.0" y2="306.0"/><path pathLength="1" d="M178.6 274.0V203.3A7.3 7.3 0 0 1 193.1 203.3V274.0Z"/><rect pathLength="1" x="178.6" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M210.2 274.0V203.3A7.3 7.3 0 0 1 224.8 203.3V274.0Z"/><rect pathLength="1" x="210.2" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M241.9 274.0V203.3A7.3 7.3 0 0 1 256.5 203.3V274.0Z"/><rect pathLength="1" x="241.9" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M273.5 274.0V203.3A7.3 7.3 0 0 1 288.1 203.3V274.0Z"/><rect pathLength="1" x="273.5" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M305.2 274.0V203.3A7.3 7.3 0 0 1 319.8 203.3V274.0Z"/><rect pathLength="1" x="305.2" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M336.9 274.0V203.3A7.3 7.3 0 0 1 351.5 203.3V274.0Z"/><rect pathLength="1" x="336.9" y="322.0" width="14.6" height="50.0"/><line pathLength="1" x1="640.0" y1="300.0" x2="830.0" y2="300.0"/><line pathLength="1" x1="640.0" y1="306.0" x2="830.0" y2="306.0"/><path pathLength="1" d="M648.6 274.0V203.3A7.3 7.3 0 0 1 663.1 203.3V274.0Z"/><rect pathLength="1" x="648.6" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M680.2 274.0V203.3A7.3 7.3 0 0 1 694.8 203.3V274.0Z"/><rect pathLength="1" x="680.2" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M711.9 274.0V203.3A7.3 7.3 0 0 1 726.5 203.3V274.0Z"/><rect pathLength="1" x="711.9" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M743.6 274.0V203.3A7.3 7.3 0 0 1 758.1 203.3V274.0Z"/><rect pathLength="1" x="743.6" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M775.2 274.0V203.3A7.3 7.3 0 0 1 789.8 203.3V274.0Z"/><rect pathLength="1" x="775.2" y="322.0" width="14.6" height="50.0"/><path pathLength="1" d="M806.9 274.0V203.3A7.3 7.3 0 0 1 821.5 203.3V274.0Z"/><rect pathLength="1" x="806.9" y="322.0" width="14.6" height="50.0"/><line pathLength="1" x1="60.0" y1="300.0" x2="170.0" y2="300.0"/><line pathLength="1" x1="60.0" y1="306.0" x2="170.0" y2="306.0"/><rect pathLength="1" x="82.2" y="138.0" width="20.7" height="40.0"/><path pathLength="1" d="M82.2 274.0V206.3A10.3 10.3 0 0 1 102.8 206.3V274.0Z"/><rect pathLength="1" x="82.2" y="322.0" width="20.7" height="50.0"/><rect pathLength="1" x="127.2" y="138.0" width="20.7" height="40.0"/><path pathLength="1" d="M127.2 274.0V206.3A10.3 10.3 0 0 1 147.8 206.3V274.0Z"/><rect pathLength="1" x="127.2" y="322.0" width="20.7" height="50.0"/><line pathLength="1" x1="68.0" y1="118.0" x2="68.0" y2="400.0"/><line pathLength="1" x1="162.0" y1="118.0" x2="162.0" y2="400.0"/><line pathLength="1" x1="830.0" y1="300.0" x2="940.0" y2="300.0"/><line pathLength="1" x1="830.0" y1="306.0" x2="940.0" y2="306.0"/><rect pathLength="1" x="852.1" y="138.0" width="20.7" height="40.0"/><path pathLength="1" d="M852.1 274.0V206.3A10.3 10.3 0 0 1 872.9 206.3V274.0Z"/><rect pathLength="1" x="852.1" y="322.0" width="20.7" height="50.0"/><rect pathLength="1" x="897.1" y="138.0" width="20.7" height="40.0"/><path pathLength="1" d="M897.1 274.0V206.3A10.3 10.3 0 0 1 917.9 206.3V274.0Z"/><rect pathLength="1" x="897.1" y="322.0" width="20.7" height="50.0"/><line pathLength="1" x1="838.0" y1="118.0" x2="838.0" y2="400.0"/><line pathLength="1" x1="932.0" y1="118.0" x2="932.0" y2="400.0"/></g><g class="rs-s2"><line pathLength="1" x1="72.0" y1="98.0" x2="72.0" y2="106.0"/><line pathLength="1" x1="84.0" y1="98.0" x2="84.0" y2="106.0"/><line pathLength="1" x1="96.0" y1="98.0" x2="96.0" y2="106.0"/><line pathLength="1" x1="108.0" y1="98.0" x2="108.0" y2="106.0"/><line pathLength="1" x1="120.0" y1="98.0" x2="120.0" y2="106.0"/><line pathLength="1" x1="132.0" y1="98.0" x2="132.0" y2="106.0"/><line pathLength="1" x1="144.0" y1="98.0" x2="144.0" y2="106.0"/><line pathLength="1" x1="156.0" y1="98.0" x2="156.0" y2="106.0"/><line pathLength="1" x1="842.0" y1="98.0" x2="842.0" y2="106.0"/><line pathLength="1" x1="854.0" y1="98.0" x2="854.0" y2="106.0"/><line pathLength="1" x1="866.0" y1="98.0" x2="866.0" y2="106.0"/><line pathLength="1" x1="878.0" y1="98.0" x2="878.0" y2="106.0"/><line pathLength="1" x1="890.0" y1="98.0" x2="890.0" y2="106.0"/><line pathLength="1" x1="902.0" y1="98.0" x2="902.0" y2="106.0"/><line pathLength="1" x1="914.0" y1="98.0" x2="914.0" y2="106.0"/><line pathLength="1" x1="926.0" y1="98.0" x2="926.0" y2="106.0"/><path pathLength="1" d="M372 206H628V194H372Z"/><text x="500" y="204" text-anchor="middle" class="inscr">DEM DEUTSCHEN VOLKE</text><path pathLength="1" d="M364 194L500 140L636 194Z"/><path pathLength="1" d="M386 188L500 147L614 188" class="ghost"/><path pathLength="1" d="M385.0 214V372M399.0 214V372"/><rect pathLength="1" x="382.0" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="382.0" y="372.0" width="20.0" height="6.0"/><path pathLength="1" d="M428.2 214V372M442.2 214V372"/><rect pathLength="1" x="425.2" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="425.2" y="372.0" width="20.0" height="6.0"/><path pathLength="1" d="M471.4 214V372M485.4 214V372"/><rect pathLength="1" x="468.4" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="468.4" y="372.0" width="20.0" height="6.0"/><path pathLength="1" d="M514.6 214V372M528.6 214V372"/><rect pathLength="1" x="511.6" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="511.6" y="372.0" width="20.0" height="6.0"/><path pathLength="1" d="M557.8 214V372M571.8 214V372"/><rect pathLength="1" x="554.8" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="554.8" y="372.0" width="20.0" height="6.0"/><path pathLength="1" d="M601.0 214V372M615.0 214V372"/><rect pathLength="1" x="598.0" y="206.0" width="20.0" height="8.0"/><rect pathLength="1" x="598.0" y="372.0" width="20.0" height="6.0"/><line pathLength="1" x1="372.0" y1="378.0" x2="628.0" y2="378.0"/><line pathLength="1" x1="362.0" y1="385.0" x2="638.0" y2="385.0"/><line pathLength="1" x1="352.0" y1="392.0" x2="648.0" y2="392.0"/></g><g class="rs-s3"><line pathLength="1" x1="176.0" y1="380.0" x2="180.0" y2="392.0" class="ghost"/><line pathLength="1" x1="186.0" y1="380.0" x2="190.0" y2="392.0" class="ghost"/><line pathLength="1" x1="196.0" y1="380.0" x2="200.0" y2="392.0" class="ghost"/><line pathLength="1" x1="206.0" y1="380.0" x2="210.0" y2="392.0" class="ghost"/><line pathLength="1" x1="216.0" y1="380.0" x2="220.0" y2="392.0" class="ghost"/><line pathLength="1" x1="226.0" y1="380.0" x2="230.0" y2="392.0" class="ghost"/><line pathLength="1" x1="236.0" y1="380.0" x2="240.0" y2="392.0" class="ghost"/><line pathLength="1" x1="246.0" y1="380.0" x2="250.0" y2="392.0" class="ghost"/><line pathLength="1" x1="256.0" y1="380.0" x2="260.0" y2="392.0" class="ghost"/><line pathLength="1" x1="266.0" y1="380.0" x2="270.0" y2="392.0" class="ghost"/><line pathLength="1" x1="276.0" y1="380.0" x2="280.0" y2="392.0" class="ghost"/><line pathLength="1" x1="286.0" y1="380.0" x2="290.0" y2="392.0" class="ghost"/><line pathLength="1" x1="296.0" y1="380.0" x2="300.0" y2="392.0" class="ghost"/><line pathLength="1" x1="306.0" y1="380.0" x2="310.0" y2="392.0" class="ghost"/><line pathLength="1" x1="316.0" y1="380.0" x2="320.0" y2="392.0" class="ghost"/><line pathLength="1" x1="326.0" y1="380.0" x2="330.0" y2="392.0" class="ghost"/><line pathLength="1" x1="336.0" y1="380.0" x2="340.0" y2="392.0" class="ghost"/><line pathLength="1" x1="346.0" y1="380.0" x2="350.0" y2="392.0" class="ghost"/><line pathLength="1" x1="356.0" y1="380.0" x2="360.0" y2="392.0" class="ghost"/><line pathLength="1" x1="646.0" y1="380.0" x2="650.0" y2="392.0" class="ghost"/><line pathLength="1" x1="656.0" y1="380.0" x2="660.0" y2="392.0" class="ghost"/><line pathLength="1" x1="666.0" y1="380.0" x2="670.0" y2="392.0" class="ghost"/><line pathLength="1" x1="676.0" y1="380.0" x2="680.0" y2="392.0" class="ghost"/><line pathLength="1" x1="686.0" y1="380.0" x2="690.0" y2="392.0" class="ghost"/><line pathLength="1" x1="696.0" y1="380.0" x2="700.0" y2="392.0" class="ghost"/><line pathLength="1" x1="706.0" y1="380.0" x2="710.0" y2="392.0" class="ghost"/><line pathLength="1" x1="716.0" y1="380.0" x2="720.0" y2="392.0" class="ghost"/><line pathLength="1" x1="726.0" y1="380.0" x2="730.0" y2="392.0" class="ghost"/><line pathLength="1" x1="736.0" y1="380.0" x2="740.0" y2="392.0" class="ghost"/><line pathLength="1" x1="746.0" y1="380.0" x2="750.0" y2="392.0" class="ghost"/><line pathLength="1" x1="756.0" y1="380.0" x2="760.0" y2="392.0" class="ghost"/><line pathLength="1" x1="766.0" y1="380.0" x2="770.0" y2="392.0" class="ghost"/><line pathLength="1" x1="776.0" y1="380.0" x2="780.0" y2="392.0" class="ghost"/><line pathLength="1" x1="786.0" y1="380.0" x2="790.0" y2="392.0" class="ghost"/><line pathLength="1" x1="796.0" y1="380.0" x2="800.0" y2="392.0" class="ghost"/><line pathLength="1" x1="806.0" y1="380.0" x2="810.0" y2="392.0" class="ghost"/><line pathLength="1" x1="816.0" y1="380.0" x2="820.0" y2="392.0" class="ghost"/><line pathLength="1" x1="826.0" y1="380.0" x2="830.0" y2="392.0" class="ghost"/><line pathLength="1" x1="389.0" y1="218.0" x2="389.0" y2="368.0" class="ghost"/><line pathLength="1" x1="392.0" y1="218.0" x2="392.0" y2="368.0" class="ghost"/><line pathLength="1" x1="395.0" y1="218.0" x2="395.0" y2="368.0" class="ghost"/><line pathLength="1" x1="432.2" y1="218.0" x2="432.2" y2="368.0" class="ghost"/><line pathLength="1" x1="435.2" y1="218.0" x2="435.2" y2="368.0" class="ghost"/><line pathLength="1" x1="438.2" y1="218.0" x2="438.2" y2="368.0" class="ghost"/><line pathLength="1" x1="475.4" y1="218.0" x2="475.4" y2="368.0" class="ghost"/><line pathLength="1" x1="478.4" y1="218.0" x2="478.4" y2="368.0" class="ghost"/><line pathLength="1" x1="481.4" y1="218.0" x2="481.4" y2="368.0" class="ghost"/><line pathLength="1" x1="518.6" y1="218.0" x2="518.6" y2="368.0" class="ghost"/><line pathLength="1" x1="521.6" y1="218.0" x2="521.6" y2="368.0" class="ghost"/><line pathLength="1" x1="524.6" y1="218.0" x2="524.6" y2="368.0" class="ghost"/><line pathLength="1" x1="561.8" y1="218.0" x2="561.8" y2="368.0" class="ghost"/><line pathLength="1" x1="564.8" y1="218.0" x2="564.8" y2="368.0" class="ghost"/><line pathLength="1" x1="567.8" y1="218.0" x2="567.8" y2="368.0" class="ghost"/><line pathLength="1" x1="605.0" y1="218.0" x2="605.0" y2="368.0" class="ghost"/><line pathLength="1" x1="608.0" y1="218.0" x2="608.0" y2="368.0" class="ghost"/><line pathLength="1" x1="611.0" y1="218.0" x2="611.0" y2="368.0" class="ghost"/><rect pathLength="1" x="418.0" y="110.0" width="164.0" height="10.0"/><path pathLength="1" d="M422 110A78 70 0 0 1 578 110"/><path pathLength="1" d="M480.5 110A19.5 70 0 0 1 519.5 110" class="rib"/><path pathLength="1" d="M461.0 110A39.0 70 0 0 1 539.0 110" class="rib"/><path pathLength="1" d="M441.5 110A58.5 70 0 0 1 558.5 110" class="rib"/><line pathLength="1" x1="500.0" y1="40.0" x2="500.0" y2="110.0" class="rib"/><path pathLength="1" d="M424.5 92.5Q500.0 97.5 575.5 92.5" class="rib"/><path pathLength="1" d="M430.3 78.5Q500.0 83.5 569.7 78.5" class="rib"/><path pathLength="1" d="M438.8 66.6Q500.0 71.6 561.2 66.6" class="rib"/><path pathLength="1" d="M451.2 55.4Q500.0 60.4 548.8 55.4" class="rib"/><path pathLength="1" d="M466.0 47.0Q500.0 52.0 534.0 47.0" class="rib"/><rect pathLength="1" x="486.0" y="34.0" width="28.0" height="6.0"/><path pathLength="1" d="M455 100Q500 70 545 100" class="ghost"/></g><g class="rs-s4"><line pathLength="1" x1="115.0" y1="96.0" x2="115.0" y2="30.0"/><g class="flag"><rect class="f1" x="116" y="32" width="44" height="9"/><rect class="f2" x="116" y="41" width="44" height="9"/><rect class="f3" x="116" y="50" width="44" height="9"/></g></g></svg>
+          <div class="float-card c2" data-reveal="zoom" style="--d:.6s">
+            <div class="fc-row"><span class="pulse-dot"></span><div class="fc-sub">Hiring right now</div></div>
+            <div class="fc-big" style="margin-top:8px"><span id="fc-live">–</span> <span style="font-size:16px;font-weight:600">open jobs</span></div>
+            <div class="fc-bars"><i style="height:40%"></i><i style="height:65%;animation-delay:.1s"></i><i style="height:50%;animation-delay:.2s"></i><i style="height:80%;animation-delay:.3s"></i><i style="height:60%;animation-delay:.4s"></i><i style="height:95%;animation-delay:.5s"></i><i style="height:75%;animation-delay:.6s"></i></div>
+          </div>
+          <div class="float-card c3" data-reveal="zoom" style="--d:.8s">
+            <div class="fc-row">
+              <div class="company-logo v2" style="width:44px;height:44px;border-radius:12px"><i data-icon="check"></i></div>
+              <div><div class="fc-title">Application sent!</div><div class="fc-sub">Registered Nurse · Hamburg</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"></div>
+    </section>
+
+    <!-- City ticker -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee"></div>
+    </div>
+
+    <!-- Categories -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-head">
+          <div data-reveal="left">
+            <span class="kicker">Explore</span>
+            <h2 class="section-title">Browse by category</h2>
+            <p class="section-sub">From software to skilled trades — Germany needs talent in every industry.</p>
+          </div>
+          <a href="/jobs" class="btn btn-outline" data-reveal="right">All jobs <i data-icon="arrow"></i></a>
+        </div>
+        <div class="cat-grid" id="cat-grid"></div>
+      </div>
+    </section>
+
+    <!-- Featured jobs -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div data-reveal="left">
+            <span class="kicker">Hot right now</span>
+            <h2 class="section-title">Featured jobs</h2>
+            <p class="section-sub">Fresh opportunities from employers actively hiring international candidates.</p>
+          </div>
+          <a href="/jobs" class="btn btn-dark" data-reveal="right">View all jobs <i data-icon="arrow"></i></a>
+        </div>
+        <div class="job-grid" id="featured-jobs"></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section-dark" id="how">
+      <div class="container">
+        <div class="section-head center">
+          <span class="kicker" data-reveal>Simple process</span>
+          <h2 class="section-title" data-reveal style="--d:.1s">Three steps to your new job</h2>
+          <p class="section-sub" data-reveal style="--d:.2s">No account needed. Find a role you love, upload your CV and you’re done.</p>
+        </div>
+        <div class="steps">
+          <div class="step" data-reveal style="--d:.1s">
+            <div class="step-num">1<i data-icon="search"></i></div>
+            <h3>Search</h3>
+            <p>Filter by city, industry, language requirements and visa sponsorship.</p>
+          </div>
+          <div class="step" data-reveal style="--d:.25s">
+            <div class="step-num">2<i data-icon="upload"></i></div>
+            <h3>Apply</h3>
+            <p>Fill in a short form and upload your CV — it only takes a couple of minutes.</p>
+          </div>
+          <div class="step" data-reveal style="--d:.4s">
+            <div class="step-num">3<i data-icon="rocket"></i></div>
+            <h3>Get hired</h3>
+            <p>Our team reviews your application and connects you with the employer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="section">
+      <div class="container why">
+        <div class="why-visual" data-reveal="zoom">
+          <div class="why-ring"></div>
+          <div class="why-center"><img src="/assets/logo.png" alt="Jobs in Germany logo"></div>
+          <div class="why-badge b1"><i data-icon="shield"></i> Verified employers</div>
+          <div class="why-badge b2"><i data-icon="passport"></i> Visa support</div>
+        </div>
+        <div>
+          <div data-reveal>
+            <span class="kicker">Why Jobs in Germany</span>
+            <h2 class="section-title">Built for international talent</h2>
+            <p class="section-sub">Moving to a new country is a big step. We make the job part simple.</p>
+          </div>
+          <div class="features">
+            <div class="feature" data-reveal style="--d:.1s">
+              <div class="feature-icon"><i data-icon="passport"></i></div>
+              <div><h4>Visa-friendly employers</h4><p>See at a glance which companies sponsor work visas and the EU Blue Card.</p></div>
+            </div>
+            <div class="feature" data-reveal style="--d:.2s">
+              <div class="feature-icon"><i data-icon="language"></i></div>
+              <div><h4>Clear language requirements</h4><p>Every job shows the German level you need — from “not required” to C2.</p></div>
+            </div>
+            <div class="feature" data-reveal style="--d:.3s">
+              <div class="feature-icon"><i data-icon="euro"></i></div>
+              <div><h4>Transparent salaries</h4><p>Salary ranges on every listing, so you know what to expect before applying.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container">
+      <div class="cta" data-reveal="zoom">
+        <div>
+          <h2>Ready to start your career in Germany?</h2>
+          <p>No account needed — find a role you love and apply in a few minutes.</p>
+        </div>
+        <a href="/jobs" class="btn btn-dark btn-lg">Find your job <i data-icon="arrowUpRight"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="/assets/logo-light.png" alt="Jobs in Germany">
+          <p>Connecting international talent with employers across Germany.</p>
+        </div>
+        <div>
+          <h4>Candidates</h4>
+          <ul><li><a href="/jobs">Browse jobs</a></li><li><a href="/jobs?visa=1">Visa sponsorship</a></li><li><a href="/jobs?workMode=Remote">Remote jobs</a></li></ul>
+        </div>
+        <div>
+          <h4>Popular cities</h4>
+          <ul><li><a href="/jobs?location=Berlin">Berlin</a></li><li><a href="/jobs?location=Munich">Munich</a></li><li><a href="/jobs?location=Hamburg">Hamburg</a></li><li><a href="/jobs?location=Frankfurt">Frankfurt</a></li></ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul><li><a href="/#how">How it works</a></li><li><a href="/admin/">Admin login</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> Jobs in Germany. All rights reserved.</span>
+        <span>Made with <span style="color:var(--red)">♥</span> for talent worldwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><i data-icon="arrowUp"></i></button>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>
